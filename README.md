@@ -4,8 +4,6 @@
   <p><b>Node.js Official B2B Client Library</b></p>
 
   [![Zakki Store Web Docs](https://img.shields.io/badge/ZAKKI%20STORE-WEB%20DOCS-6C5CE7?style=for-the-badge&logo=gitbook&logoColor=white)](https://qris.zakki.store)
-  [![NPM Package](https://img.shields.io/badge/NPM-Package-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/zakkistore-sdk)
-  
   [![WhatsApp](https://img.shields.io/badge/WHATSAPP-CHAT%20SUPPORT-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6283844082339)
   [![Telegram](https://img.shields.io/badge/TELEGRAM-DEV%20CONTACT-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/zakki_store)
 </div>
@@ -16,24 +14,14 @@
 > **🚀 Hubungi Developer untuk Akses API & Whitelist IP:**
 > Pendaftaran IP partner B2B, pembukaan whitelist, atau keluhan error `[IP BLOCKED / UNREGISTERED]` dapat diselesaikan secara instan dengan menghubungi tim Developer Zakki Store via tombol **WhatsApp** atau **Telegram** di atas.
 
-> [!TIP]
-> **📦 Package Manager (NPM):**
-> SDK Node.js resmi ini diterbitkan secara publik di package manager NPM. Untuk memasang dan menggunakannya langsung di proyek produksi Anda dengan mudah, silakan kunjungi halaman **[NPM Registry zakkistore-sdk](https://www.npmjs.com/package/zakkistore-sdk)**.
-
 ---
 
 ## 🚀 Instalasi & Inisialisasi
 
-Pasang pustaka SDK resmi melalui manajer paket NPM:
-
-```bash
-npm install zakkistore-sdk
-```
-
-Kemudian inisialisasi SDK di dalam project Node.js Anda:
+Untuk menggunakan SDK di dalam project Node.js Anda:
 
 ```javascript
-const ZakkiStore = require('zakkistore-sdk');
+const ZakkiStore = require('./sdk/index');
 
 // Inisialisasi SDK dengan parameter konfigurasi
 const zakki = new ZakkiStore({
@@ -76,6 +64,9 @@ import ZakkiStore from 'zakkistore-sdk';
 const zakki = new ZakkiStore({
     baseUrl: 'https://qris.zakki.store',
     token: 'token_api_member',
+    iduser: 'IBO99',
+    email: 'member@gmail.com',
+    pin: '123456',
     autoWithdraw: true
 });
 ```
