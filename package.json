@@ -1,0 +1,42 @@
+{
+  "name": "zakkistore-sdk",
+  "version": "1.0.0",
+  "description": "SDK Node.js Resmi untuk Integrasi Layanan Payment Gateway QRIS & Host-to-Host (H2H) Zakki Store",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.js",
+      "import": "./index.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrLow12/zakkistore-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrLow12/zakkistore-sdk/issues"
+  },
+  "homepage": "https://github.com/MrLow12/zakkistore-sdk#readme",
+  "keywords": [
+    "qris",
+    "payment",
+    "gateway",
+    "h2h",
+    "zakki",
+    "zakkixd",
+    "zakkistore",
+    "store",
+    "pulsa",
+    "postpaid",
+    "utility",
+    "sdk"
+  ],
+  "author": "zakkixd",
+  "license": "MIT",
+  "dependencies": {}
+}
