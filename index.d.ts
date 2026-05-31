@@ -116,6 +116,13 @@ declare class ZakkiStore {
     tarik(jumlah: number | string): Promise<any>;
 
     /**
+     * 25. Cek Riwayat Mutasi Tarik/Tabung
+     * Melihat riwayat mutasi tarik/tabung pada akun Anda
+     * @param type Tipe mutasi ('all' | 'tarik' | 'tabung')
+     */
+    checkmutasi(type?: 'all' | 'tarik' | 'tabung' | string): Promise<any>;
+
+    /**
      * 12. Transfer Saldo Antar Member
      * Mentransfer sebagian saldo Anda ke rekening VA member/user Zakki Store lainnya
      * @param payload Payload transfer

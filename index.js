@@ -232,6 +232,22 @@ class ZakkiStore {
     }
 
     /**
+     * 25. Cek Riwayat Mutasi Tarik/Tabung
+     * Melihat riwayat mutasi tarik/tabung pada akun Anda
+     * @param {string} [type='all'] Tipe mutasi ('all', 'tarik', 'tabung')
+     * @returns {Promise<Object>} Respon data riwayat mutasi
+     */
+    async checkmutasi(type = 'all') {
+        const payload = {
+            token: this.token,
+            type: String(type).trim()
+        };
+        if (this.iduser) payload.iduser = this.iduser;
+        if (this.email) payload.email = this.email;
+        return this._request('/checkmutasi', 'GET', payload);
+    }
+
+    /**
      * 12. Transfer Saldo Antar Member
      * Mentransfer sebagian saldo Anda ke rekening VA member/user Zakki Store lainnya
      * @param {Object} payload Payload transfer
