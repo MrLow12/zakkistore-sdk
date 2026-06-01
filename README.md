@@ -375,7 +375,7 @@ Melihat sisa saldo aktif, no Virtual Account unik member, serta 20 riwayat mutas
 > **🚀 FITUR UNGGULAN: Auto-Withdraw / Tarik Saldo Otomatis**
 > SDK ini dilengkapi dengan sistem auto-withdraw yang sangat fleksibel dan efisien. Jika Anda mengaktifkan opsi `autoWithdraw: true` saat inisialisasi (atau memanggil `zakki.enableAutoWithdraw(true)`), maka setiap kali fungsi `checkbank()` dipanggil:
 > 1. SDK akan otomatis mendeteksi jika saldo rekening virtual bank Anda lebih dari Rp 0 (`bank_detail.balance > 0`).
-> 2. Tanpa perlu dipanggil manual oleh pengembang, SDK akan langsung memicu eksekusi internal fungsi `tarik()` di latar belakang untuk menarik seluruh dana bank tersebut masuk ke saldo utama aplikasi (BukaOlshop).
+> 2. Tanpa perlu dipanggil manual oleh pengembang, SDK akan langsung memicu eksekusi internal fungsi `tarik()` di latar belakang untuk menarik seluruh dana bank tersebut masuk ke saldo utama aplikasi (Zakki Store).
 > 3. Hasil akhirnya, objek respon `checkbank()` akan disisipkan bendera sukses `auto_withdraw_executed: true` beserta jumlah yang ditarik, membuat siklus transaksi menjadi instan dan otomatis secara total!
 
 - **Sintaks:** `zakki.checkbank()`
@@ -744,7 +744,7 @@ Melihat rangkuman total volume, laba/rugi, peredaran koin, jumlah transaksi akti
     "total_users": 28,
     "financials": {
       "total_saldo_bank": 4500000,
-      "total_saldo_bukaolshop": 4520000,
+      "total_saldo_beredar": 4520000,
       "system_profit": 250000,
       "total_injection": 5000000,
       "total_loss": 5000
