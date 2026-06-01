@@ -375,7 +375,7 @@ Melihat sisa saldo aktif, no Virtual Account unik member, serta 20 riwayat mutas
 > **🚀 FITUR UNGGULAN: Auto-Withdraw / Tarik Saldo Otomatis**
 > SDK ini dilengkapi dengan sistem auto-withdraw yang sangat fleksibel dan efisien. Jika Anda mengaktifkan opsi `autoWithdraw: true` saat inisialisasi (atau memanggil `zakki.enableAutoWithdraw(true)`), maka setiap kali fungsi `checkbank()` dipanggil:
 > 1. SDK akan otomatis mendeteksi jika saldo rekening virtual bank Anda lebih dari Rp 0 (`bank_detail.balance > 0`).
-> 2. Tanpa perlu dipanggil manual oleh pengembang, SDK akan langsung memicu eksekusi internal fungsi `tarik()` di latar belakang untuk menarik seluruh dana bank tersebut masuk ke saldo utama aplikasi (Zakki Store).
+> 2. Tanpa perlu dipanggil manual oleh pengembang, SDK akan langsung memicu eksekusi internal fungsi `tarik()` di latar belakang untuk menarik seluruh dana bank tersebut masuk ke saldo utama aplikasi zakki store.
 > 3. Hasil akhirnya, objek respon `checkbank()` akan disisipkan bendera sukses `auto_withdraw_executed: true` beserta jumlah yang ditarik, membuat siklus transaksi menjadi instan dan otomatis secara total!
 
 - **Sintaks:** `zakki.checkbank()`
@@ -741,25 +741,40 @@ Melihat rangkuman total volume, laba/rugi, peredaran koin, jumlah transaksi akti
 - **Struktur Output JSON (`code 200`):**
   ```json
   {
-    "total_users": 28,
-    "financials": {
-      "total_saldo_bank": 4500000,
-      "total_saldo_beredar": 4520000,
-      "system_profit": 250000,
-      "total_injection": 5000000,
-      "total_loss": 5000
+    "code": 200,
+    "status": "success",
+    "message": "🚀 BANK ZAKKI STORE - SYSTEM STATUS ENGINE (PUBLIC)",
+    "data": {
+      "statistik_mesin": {
+        "total_pengguna": 28,
+        "koneksi_aktif": 0,
+        "jumlah_core": 4,
+        "penggunaan_cpu": [
+          "core1: 5%"
+        ],
+        "beban_rata_rata": [0, 0, 0],
+        "waktu_aktif": "1 hari, 2 jam, 3 menit, 4 detik"
+      },
+      "ringkasan_finansial": {
+        "total_saldo_beredar": 4500000,
+        "total_volume_transaksi": 12500000,
+        "total_poin_reward": 120,
+        "total_transaksi_h2h": 1420,
+        "total_volume_h2h": 12500000,
+        "total_mining": 250,
+        "total_mining_reward": 12500
+      },
+      "integritas_keamanan": {
+        "injeksi_ilegal": 0,
+        "kehilangan_data_terdeteksi": 0,
+        "kesehatan_sistem": "🟢 OPTIMAL",
+        "status_audit": "100% VERIFIED BY SYSTEM ENGINEERING CHECKER",
+        "callback_engine": "ONLINE",
+        "telegram_bot": "ONLINE"
+      },
+      "topup_sukses": 150
     },
-    "h2h_metrics": {
-      "total_transactions": 1420,
-      "total_volume": 12500000,
-      "success_ratio": "98.4%"
-    },
-    "mining_metrics": {
-      "total_blocks_mined": 250,
-      "total_koin_mined": 12500
-    },
-    "status": "HEALTHY",
-    "timestamp": "2026-05-31T17:40:00.000Z"
+    "server_time": "Senin, 1 Juni 2026 pukul 17.40"
   }
   ```
 

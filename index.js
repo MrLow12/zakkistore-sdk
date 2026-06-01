@@ -333,12 +333,14 @@ class ZakkiStore {
 
     /**
      * 16. Cek Status Mining Global
-     * Melihat status, tingkat kesulitan, serta parameter global dari sistem Mining koin
+     * Melihat detail status transaksi mining koin spesifik berdasarkan ID
+     * @param {string} idmining ID Transaksi Mining (contoh: Mining-XXXXXX)
      * @returns {Promise<Object>} Detail status mining server
      */
-    async cekmining() {
+    async cekmining(idmining) {
+        if (!idmining) throw new Error('Parameter idmining wajib diisi.');
         return this._request('/cekmining', 'GET', {
-            token: this.token
+            idmining: String(idmining).trim()
         });
     }
 
@@ -350,6 +352,34 @@ class ZakkiStore {
     async mymining() {
         return this._request('/mymining', 'GET', {
             token: this.token
+        });
+    }
+
+    /**
+     * Minta Tantangan (Challenge) Mining Baru
+     * Mendapatkan challenge kriptografi dan difficulty untuk komputasi Proof of Work
+     * @returns {Promise<Object>} Respon detail challenge mining
+     */
+    async miningStart() {
+        return this._request('/mining/start', 'GET', {
+            token: this.token
+        });
+    }
+
+    /**
+     * Submit Jawaban Mining (Proof of Work)
+     * Mengirimkan nonce tebakan dan signature untuk divalidasi oleh server
+     * @param {number|string} nonce Nonce hasil komputasi yang valid
+     * @param {string} signature Segel kriptografi signature dari server
+     * @returns {Promise<Object>} Respon hasil submit mining (sukses/denda)
+     */
+    async miningSubmit(nonce, signature) {
+        if (typeof nonce === 'undefined') throw new Error('Parameter nonce wajib disertakan.');
+        if (!signature) throw new Error('Parameter signature wajib disertakan.');
+        return this._request('/mining/submit', 'POST', {
+            token: this.token,
+            nonce: nonce,
+            signature: signature
         });
     }
 
@@ -435,6 +465,113 @@ class ZakkiStore {
      */
     async status() {
         return this._request('/status', 'GET');
+    }
+
+    /**
+     * 26. Set Callback URL
+     * Mendaftarkan URL callback HTTPS Anda untuk menerima laporan otomatis status pembayaran
+     * @param {string} site URL callback Anda (Wajib HTTPS dan harus mengembalikan 200 OK)
+     * @returns {Promise<Object>} Respon status pendaftaran callback
+     */
+    async setcallback(site) {
+        return this._request('/setcallback', 'GET', {
+            token: this.token,
+            site: String(site).trim()
+        });
+    }
+
+    /**
+     * 27. Hapus Callback URL
+     * Menghapus URL callback yang terdaftar agar tidak lagi menerima laporan otomatis
+     * @returns {Promise<Object>} Respon status penghapusan callback
+     */
+    async delcallback() {
+        return this._request('/delcallback', 'GET', {
+            token: this.token
+        });
+    }
+
+    /**
+     * 28. Set Notifikasi Bot Telegram
+     * Mendaftarkan ID Telegram Anda agar menerima laporan transaksi otomatis dari bot
+     * @param {string|number} telegramId ID Telegram member Anda
+     * @returns {Promise<Object>} Respon status pendaftaran Telegram ID
+     */
+    async setnotifbot(telegramId) {
+        return this._request('/setnotifbot', 'GET', {
+            token: this.token,
+            id: String(telegramId).trim()
+        });
+    }
+
+    /**
+     * 29. Hapus Notifikasi Bot Telegram
+     * Menghapus ID Telegram yang terdaftar untuk menonaktifkan notifikasi bot
+     * @returns {Promise<Object>} Respon status penghapusan
+     */
+    async delnotifbot() {
+        return this._request('/delnotifbot', 'GET', {
+            token: this.token
+        });
+    }
+
+
+
+    /**
+     * 31. Cek Detail Transfer Saldo
+     * Memverifikasi status transfer saldo antar member berdasarkan ID transfer
+     * @param {string} idtransfer ID transaksi transfer (contoh: BankTF-xxxxxx)
+     * @returns {Promise<Object>} Respon detail transfer saldo
+     */
+    async checktransfer(idtransfer) {
+        return this._request('/checktransfer', 'GET', {
+            idtransfer: String(idtransfer).trim()
+        });
+    }
+
+    /**
+     * 32. Cek Riwayat Transfer Saldo (Kirim / Terima / Semua)
+     * Melihat riwayat transaksi transfer saldo pada akun Anda
+     * @param {string} [type='all'] Tipe riwayat ('all', 'kirim', 'terima')
+     * @returns {Promise<Object>} Respon daftar transfer
+     */
+    async mytransfer(type = 'all') {
+        return this._request('/mytransfer', 'GET', {
+            token: this.token,
+            type: String(type).trim()
+        });
+    }
+
+    /**
+     * 33. Cek Riwayat Topup Sukses
+     * Mengambil daftar seluruh riwayat pembayaran QRIS topup sukses beserta total volume
+     * @returns {Promise<Object>} Daftar riwayat topup sukses
+     */
+    async mytopup() {
+        return this._request('/mytopup', 'GET', {
+            token: this.token
+        });
+    }
+
+    /**
+     * 34. Cek Alamat IP & Keamanan Server Anda
+     * Mengambil alamat IP publik server Anda terdeteksi oleh gateway beserta status keamanan (Aman/Whitelist/Blacklist)
+     * @returns {Promise<Object>} Detail IP & status keamanan
+     */
+    async cekmyip() {
+        return this._request('/cekmyip', 'GET');
+    }
+
+    /**
+     * 35. Cek Status Keamanan Alamat IP Spesifik
+     * Memverifikasi status keamanan IP tertentu di list blacklist/whitelist sistem gateway
+     * @param {string} ip Alamat IP yang ingin dicek
+     * @returns {Promise<Object>} Detail IP & status keamanan
+     */
+    async cekip(ip) {
+        return this._request('/cekip', 'GET', {
+            ip: String(ip).trim()
+        });
     }
 }
 

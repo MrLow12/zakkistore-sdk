@@ -154,13 +154,28 @@ declare class ZakkiStore {
 
     /**
      * 16. Cek Status Mining Global
+     * @param idmining ID Transaksi Mining (contoh: Mining-XXXXXX)
      */
-    cekmining(): Promise<any>;
+    cekmining(idmining: string): Promise<any>;
 
     /**
      * 17. Cek Statistik Mining Pribadi
      */
     mymining(): Promise<any>;
+
+    /**
+     * Minta Tantangan (Challenge) Mining Baru
+     * Mendapatkan challenge kriptografi dan difficulty untuk komputasi Proof of Work
+     */
+    miningStart(): Promise<any>;
+
+    /**
+     * Submit Jawaban Mining (Proof of Work)
+     * Mengirimkan nonce tebakan dan signature untuk divalidasi oleh server
+     * @param nonce Nonce hasil komputasi yang valid
+     * @param signature Segel kriptografi signature dari server
+     */
+    miningSubmit(nonce: number | string, signature: string): Promise<any>;
 
     /**
      * 18. Cek Stok Nomor Telepon (Noktel)
@@ -206,6 +221,67 @@ declare class ZakkiStore {
      * Mengambil rangkuman statistik global sistem (total saldo, total pengguna, total volume H2H, dll)
      */
     status(): Promise<any>;
+
+    /**
+     * 26. Set Callback URL
+     * Mendaftarkan URL callback HTTPS Anda untuk menerima laporan otomatis status pembayaran
+     * @param site URL callback Anda (Wajib HTTPS dan harus mengembalikan 200 OK)
+     */
+    setcallback(site: string): Promise<any>;
+
+    /**
+     * 27. Hapus Callback URL
+     * Menghapus URL callback yang terdaftar agar tidak lagi menerima laporan otomatis
+     */
+    delcallback(): Promise<any>;
+
+    /**
+     * 28. Set Notifikasi Bot Telegram
+     * Mendaftarkan ID Telegram Anda agar menerima laporan transaksi otomatis dari bot
+     * @param telegramId ID Telegram member Anda
+     */
+    setnotifbot(telegramId: string | number): Promise<any>;
+
+    /**
+     * 29. Hapus Notifikasi Bot Telegram
+     * Menghapus ID Telegram yang terdaftar untuk menonaktifkan notifikasi bot
+     */
+    delnotifbot(): Promise<any>;
+
+
+
+    /**
+     * 31. Cek Detail Transfer Saldo
+     * Memverifikasi status transfer saldo antar member berdasarkan ID transfer
+     * @param idtransfer ID transaksi transfer (contoh: BankTF-xxxxxx)
+     */
+    checktransfer(idtransfer: string): Promise<any>;
+
+    /**
+     * 32. Cek Riwayat Transfer Saldo (Kirim / Terima / Semua)
+     * Melihat riwayat transaksi transfer saldo pada akun Anda
+     * @param type Tipe riwayat ('all' | 'kirim' | 'terima')
+     */
+    mytransfer(type?: 'all' | 'kirim' | 'terima' | string): Promise<any>;
+
+    /**
+     * 33. Cek Riwayat Topup Sukses
+     * Mengambil daftar seluruh riwayat pembayaran QRIS topup sukses beserta total volume
+     */
+    mytopup(): Promise<any>;
+
+    /**
+     * 34. Cek Alamat IP & Keamanan Server Anda
+     * Mengambil alamat IP publik server Anda terdeteksi oleh gateway beserta status keamanan (Aman/Whitelist/Blacklist)
+     */
+    cekmyip(): Promise<any>;
+
+    /**
+     * 35. Cek Status Keamanan Alamat IP Spesifik
+     * Memverifikasi status keamanan IP tertentu di list blacklist/whitelist sistem gateway
+     * @param ip Alamat IP yang ingin dicek
+     */
+    cekip(ip: string): Promise<any>;
 }
 
 export = ZakkiStore;
