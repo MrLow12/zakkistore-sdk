@@ -1,6 +1,6 @@
 {
   "name": "zakkistore-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "SDK Node.js Resmi untuk Integrasi Layanan Payment Gateway QRIS & Host-to-Host (H2H) Zakki Store",
   "main": "index.js",
   "types": "index.d.ts",
