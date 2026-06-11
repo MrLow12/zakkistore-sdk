@@ -46,6 +46,13 @@ declare class ZakkiStore {
     cektopup(idtopup: string): Promise<any>;
 
     /**
+     * Cek Status Topup 2 (Hologram Struk)
+     * Mendapatkan URL gambar struk digital dinamis dalam format PNG
+     * @param idtopup ID transaksi topup (contoh: topup-xxxx-xxxx)
+     */
+    cektopup2(idtopup: string): string;
+
+    /**
      * 3. Buka/Cari Katalog Produk & Harga H2H
      * Menampilkan semua jenis kode & harga produk yang aktif
      * @param jenis Nama folder/kategori produk (contoh: pulsa, ewallet, pln)

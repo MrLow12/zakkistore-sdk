@@ -94,6 +94,16 @@ class ZakkiStore {
     }
 
     /**
+     * Cek Status Topup 2 (Hologram Struk)
+     * Mendapatkan URL gambar struk digital dinamis dalam format PNG
+     * @param {string} idtopup ID transaksi topup (contoh: topup-xxxx-xxxx)
+     * @returns {string} URL Gambar Struk Digital
+     */
+    cektopup2(idtopup) {
+        return `${this.baseUrl}/cektopup2?idtopup=${encodeURIComponent(idtopup)}`;
+    }
+
+    /**
      * 3. Buka/Cari Katalog Produk & Harga H2H
      * Menampilkan semua jenis kode & harga produk yang aktif
      * @param {string} [jenis] Nama folder/kategori produk (contoh: pulsa, ewallet, pln)
